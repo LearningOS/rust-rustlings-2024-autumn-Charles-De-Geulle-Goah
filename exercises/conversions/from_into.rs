@@ -40,10 +40,30 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of
 // Person Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
 
+
+/*也可以用嵌套match来实现 */
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.is_empty() == true {
+            Person::default()
+        } else {
+            let v :Vec<&str> = s.split(",").collect();
+            if v.len() != 2 {
+                return Person::default();
+            }
+            let mut p = Person::default();
+            let pname = &v[0];
+            match *pname {
+                "" => return Person::default(),
+                other => {p.name = pname.to_string();},
+            };
+            match &v[1].parse::<usize>() {
+                Ok(num) => p.age = *num,
+                Err(_) => return Person::default(),
+            };
+            p
+        }
     }
 }
 

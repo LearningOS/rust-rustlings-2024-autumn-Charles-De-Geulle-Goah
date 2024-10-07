@@ -27,15 +27,16 @@
 //
 // You should NOT modify any existing code except for adding two lines of attributes.
 
-// I AM NOT DONE
 
 extern "Rust" {
     fn my_demo_function(a: u32) -> u32;
+    #[link_name = "my_demo_function"]   //指定链接时的实际名字
     fn my_demo_function_alias(a: u32) -> u32;
 }
 
 mod Foo {
     // No `extern` equals `extern "Rust"`.
+    #[no_mangle]   //要export出去的函数被定义时要加上这个修饰，防止Rust编译器对函数修饰命名
     fn my_demo_function(a: u32) -> u32 {
         a
     }
