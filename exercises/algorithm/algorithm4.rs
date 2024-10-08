@@ -51,6 +51,14 @@ where
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
         //TODO
+        match self.root {
+            Some(rootptr) => {
+
+            }
+            None => {
+                
+            }
+        }
     }
 
     // Search for a value in the BST
