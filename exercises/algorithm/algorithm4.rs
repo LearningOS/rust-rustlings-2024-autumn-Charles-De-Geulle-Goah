@@ -51,12 +51,27 @@ where
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
         //TODO
-        match self.root {
+        match &self.root {
             Some(rootptr) => {
-
+                if value > (*rootptr).value {
+                    let mut left = (*rootptr).left;
+                    match left {
+                        Some(mut leftptr) => leftptr.insert(value),
+                        None => {left = Some(Box::new(TreeNode::new(value)));}
+                    }
+                } else if value < (*rootptr).value {
+                    let mut right = (*rootptr).right;
+                    match right {
+                        Some(mut rightptr) => rightptr.insert(value),
+                        None => {right = Some(Box::new(TreeNode::new(value)));}
+                    }
+                } else {
+                    return;
+                }
             }
             None => {
-                
+                let rt = TreeNode::new(value);
+                self.root = Some(Box::<TreeNode<T>>::new(rt));
             }
         }
     }
