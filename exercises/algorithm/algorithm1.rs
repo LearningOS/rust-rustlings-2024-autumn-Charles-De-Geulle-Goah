@@ -2,7 +2,7 @@
 	single linked list merge
 	This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
-// I AM NOT DONE
+
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
@@ -69,14 +69,52 @@ impl<T> LinkedList<T> {
             },
         }
     }
-	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
+	// pub fn merge(mut list_a:LinkedList<T>,mut list_b:LinkedList<T>) -> Self
+	// {
+	// 	//TODO
+	// 	let la = list_a.length as i32;
+	// 	let lb = list_b.length as i32;
+    //     let mut ca: i32 = 0;
+    //     let mut cb: i32 = 0;
+
+    //     let mut res = Self::new();
+
+    //     for _ in 0..la+lb {
+    //         if lb == cb || ca < la && cb < lb && *(list_a.get(ca).unwrap()) < *(list_b.get(cb).unwrap()) {
+    //             res.add(*list_a.get(ca).unwrap().clone());
+    //             ca += 1;
+    //         } else {
+    //             res.add(*list_a.get(cb).unwrap().clone());
+    //             cb += 1;
+    //         }
+    //     }
+        
+    //     res
+	// }
+}
+
+impl<T: std::cmp::PartialOrd+Clone> LinkedList<T> {
+    pub fn merge(mut list_a:LinkedList<T>,mut list_b:LinkedList<T>) -> Self
 	{
 		//TODO
-		Self {
-            length: 0,
-            start: None,
-            end: None,
+		let la = list_a.length as i32;
+		let lb = list_b.length as i32;
+        let mut ca: i32 = 0;
+        let mut cb: i32 = 0;
+
+        let mut res = Self::new();
+
+        for _ in 0..la+lb {
+            if lb == cb || ca < la && cb < lb && *(list_a.get(ca).unwrap()) < *(list_b.get(cb).unwrap()) {
+                res.add((*list_a.get(ca).unwrap()).clone());
+                ca += 1;
+            } else {
+                res.add((*list_b.get(cb).unwrap()).clone());
+                cb += 1;
+            }
         }
+        
+        res
 	}
 }
 
