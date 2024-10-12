@@ -8,7 +8,7 @@
 
 #[allow(unused_variables, unused_assignments)]
 fn main() {
-    let my_option: Option<i32> = Some(5);
+    let my_option: Option<()> = None;
     // if my_option.is_none() {
     //     my_option.unwrap();   //保留None，把if去掉也行
     // }
@@ -19,13 +19,13 @@ fn main() {
     ];
     println!("My array! Here it is: {:?}", my_arr);
 
-    vec![1, 2, 3, 4, 5].resize(0, 5);
+    // vec![1, 2, 3, 4, 5].resize(0, 5);
 
     /*或是： */
-    //let mut my_empty_vec = vec![1, 2, 3, 4, 5];
-    //my_empty_vec.clear();
-    //println!("This Vec is empty, see? {:?}", my_empty_vec);
-    println!("This Vec is empty, see? {:?}", ());
+    let mut my_empty_vec = vec![1, 2, 3, 4, 5];
+    my_empty_vec.clear();
+    println!("This Vec is empty, see? {:?}", my_empty_vec);
+    // println!("This Vec is empty, see? {:?}", ());
 
     
 
